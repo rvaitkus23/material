@@ -1,0 +1,39 @@
+<md-dialog aria-label="Add user">
+    <md-content class="md-padding">
+        <form name="userForm">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>First Name</label>
+                    <input ng-model="user.firstName" md-minlength="2" name="firstName" required>
+                    <div ng-messages="userForm.firstName.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-minlength">The name has to be at least 2 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Last Name</label>
+                    <input ng-model="user.lastName" md-minlength="2" name="lastName" required>
+                    <div ng-messages="userForm.lastName.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-minlength">The name has to be at least 2 characters long.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Address</label>
+                    <input ng-model="user.address" name="address" ng-blur="validateAddress(user.address)">
+                    <div ng-messages="userForm.address.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="addressInvalid">You have entered invalid address</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form>
+    </md-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()"> Cancel</md-button>
+        <md-button ng-click="save()" ng-mouseover="validateAddress(user.address)" class="md-primary"> Save</md-button>
+    </md-dialog-actions>
+</md-dialog>

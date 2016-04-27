@@ -1,0 +1,65 @@
+<html lang="en" ng-app="headX">
+<head>
+    <link rel="stylesheet" href="./node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <meta name="viewport" content="initial-scale=1" />
+</head>
+<body layout="column" ng-controller="appController as appVM">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools" layout-align="center center">
+            <h1>HeadX</h1>
+        </div>
+    </md-toolbar>
+    <div flex layout="row">
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+            <md-list>
+                <md-list-item class="md-3-line"
+                              ng-repeat="user in appVM.users"
+                              ng-click="appVM.selectUser(user, $index)"
+                              ng-class="{'selected' : $index === appVM.selectedIndex}">
+                    <div class="md-display-1 md-avatar avatar-letter" >{{appVM.firstLetter(user.firstName)}}</div>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ user.firstName }} {{ user.lastName}}</h3>
+                        <p>{{ user.address }}</p>
+                    </div>
+                </md-list-item>
+                <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="appVM.showAdd($event)">
+                    <md-icon md-font-icon="add" aria-label="add">add</md-icon>
+                </md-button>
+            </md-list>
+        </md-sidenav>
+        <md-content layout-margin>
+            <div ng-if="appVM.selected">
+                <div class="md-display-1 avatar-letter">{{appVM.firstLetter(appVM.selected.firstName)}}</div>
+                <h3>{{ appVM.selected.firstName }} {{ appVM.selected.lastName}}</h3>
+                <p>{{ appVM.selected.address }}</p>
+                <ng-map center="{{appVM.getCoordinates(appVM.selected.location)}}" zoom="15" class="map-size">
+                    <marker position="{{appVM.getCoordinates(appVM.selected.location)}}"
+                            title="{{ appVM.selected.firstName }} {{ appVM.selected.lastName}}"></marker>
+                </ng-map>
+            </div>
+        </md-content>
+    </div>
+
+    <!-- Angular Material Dependencies -->
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="./node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="./node_modules/angular-material/angular-material.min.js"></script>
+    <script src="./libs/ng-map.min.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js"></script>
+
+    <script src="./app.js"></script>
+    <script src="./constants.js"></script>
+    <script src="./services/userService.js"></script>
+    <script src="./services/validatorService.js"></script>
+    <script src="./controllers/appController.js"></script>
+    <script src="./controllers/addUserDialogController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "Jack",
+    "lastName": "The Ripper",
+    "address": "8 Bakers Gardens, Carshalton, Greater London SM5 2SF, UK",
+    "location": {
+      "lat": 51.3773303,
+      "lng": -0.1718614
+    }
+  },
+  {
+    "firstName": "John",
+    "lastName": "Smith",
+    "address": "27 John St, London, Ayr, Greater London KA8 0BS, UK",
+    "location": {
+      "lat": 51.4998494,
+      "lng": -0.1267231
+    }
+  },
+  {
+    "firstName": "Peter",
+    "lastName": "Pen",
+    "address": "7 Rue du Grain d'Or, Fort-de-France, Martinique",
+    "location": {
+      "lat": 14.6176812,
+      "lng": -61.0579078
+    }
+  }
+]
