@@ -9,16 +9,22 @@
 </head>
 <body layout="column" ng-controller="appController as appVM">
     <md-toolbar layout="row">
+        <md-button class="menu md-icon-button" hide-gt-sm ng-click="appVM.toggleSidenav()" >
+            <md-icon md-font-icon="menu" aria-label="menu">menu</md-icon>
+        </md-button>
         <div class="md-toolbar-tools" layout-align="center center">
             <h1>HeadX</h1>
         </div>
     </md-toolbar>
     <div flex layout="row">
-        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
+                    md-component-id="left"
+                    ng-click="ul.toggleList()"
+                    class="md-whiteframe-4dp">
             <md-list>
                 <md-list-item class="md-3-line"
                               ng-repeat="user in appVM.users"
-                              ng-click="appVM.selectUser(user, $index)"
+                              ng-click="appVM.selectUser(user, $index, true)"
                               ng-class="{'selected' : $index === appVM.selectedIndex}">
                     <div class="md-display-1 md-avatar avatar-letter" >{{appVM.firstLetter(user.firstName)}}</div>
                     <div class="md-list-item-text" layout="column">

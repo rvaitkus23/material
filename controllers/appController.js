@@ -14,8 +14,8 @@
 
     vm.users = [ ];
 
-    vm.toggleSidenav = function(menuId) {
-      $mdSidenav(menuId).toggle();
+    vm.toggleSidenav = function() {
+      $mdSidenav('left').toggle();
     };
 
     vm.firstLetter = function(text) {
@@ -33,9 +33,10 @@
         .then(userService.addUser);
     };
 
-    vm.selectUser = function(user, index) {
+    vm.selectUser = function(user, index, toggleMenu) {
       vm.selected = user;
       vm.selectedIndex = index;
+      if (toggleMenu) vm.toggleSidenav();
     };
 
     vm.getCoordinates = function(location) {
@@ -53,7 +54,7 @@
     function updateUsers(newUsers) {
       vm.users = newUsers;
       if (typeof(vm.selected) === 'undefined' && newUsers.length > 0) {
-        vm.selectUser(newUsers[0], 0);
+        vm.selectUser(newUsers[0], 0, false);
       }
     }
 

@@ -1,3 +1,7 @@
+md-toolbar .menu.md-icon-button{
+    height: inherit;
+}
+
 .avatar-letter {
     width: 40px;
     height: 40px;
@@ -9,5 +13,5 @@
 
 .map-size {
     height: 300px;
-    width: 400px;
+    width: 300px;
 }
